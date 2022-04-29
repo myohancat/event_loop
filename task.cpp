@@ -1,5 +1,10 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #include "task.h"
 
+#include <unistd.h>
 #include "log.h"
 
 Task::Task()
@@ -79,7 +84,10 @@ void Task::sleep(int msec)
     if (mState == TASK_STATE_STOPPING)
         return;
 
-    mCond.wait(mMutex, msec);
+    if (mId == pthread_self())
+        mCond.wait(mMutex, msec);
+    else
+        usleep(msec * 1000);
 }
 
 TaskState Task::state()

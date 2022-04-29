@@ -1,3 +1,7 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #include "event_loop.h"
 
 #include "sys_time.h"
@@ -102,7 +106,7 @@ uint32_t EventLoop::runTimers()
 
     if(mTimers.size())
     {
-        uint64_t now    = SysTime::getTickCount();
+        uint64_t now    = SysTime::getTickCountMs();
         uint64_t expiry = mTimers.front()->getExpiry();
         if(expiry <= now)
         {

@@ -1,3 +1,7 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #ifndef __TASK_H_
 #define __TASK_H_
 

@@ -1,3 +1,7 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #ifndef __CONDITION_VARIABLE_H_
 #define __CONDITION_VARIABLE_H_
 

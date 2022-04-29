@@ -1,3 +1,7 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #include "timer_thread.h"
 
 #include <errno.h>
@@ -28,7 +32,7 @@ void TimerThread::start(uint32_t msec, bool repeat)
     stop();
 
     mRepeat     = repeat;
-    mStartTime  = SysTime::getTickCount();
+    mStartTime  = SysTime::getTickCountMs();
     mIntervalMs = msec;
     mExitTask   = false;
 
@@ -69,7 +73,7 @@ void TimerThread::run()
     while(!mExitTask)
     {
         uint64_t expireTime = mStartTime + mIntervalMs;
-        uint64_t timeoutMs  = expireTime - SysTime::getTickCount();
+        uint64_t timeoutMs  = expireTime - SysTime::getTickCountMs();
 
         sleep(timeoutMs);
 

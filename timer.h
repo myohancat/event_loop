@@ -1,3 +1,7 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #ifndef __TIMER_H_
 #define __TIMER_H_
 

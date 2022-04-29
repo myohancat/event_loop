@@ -1,14 +1,26 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #include "sys_time.h"
 
 #include <time.h>
 #include <sys/time.h>
 
-uint64_t SysTime::getTickCount()
+uint64_t SysTime::getTickCountMs()
 {
     struct timespec now;
     clock_gettime(CLOCK_MONOTONIC, &now);
 
     return (uint64_t)now.tv_sec * 1000 + now.tv_nsec / 1000000;
+}
+
+uint64_t SysTime::getTickCountUs()
+{
+    struct timespec now;
+    clock_gettime(CLOCK_MONOTONIC, &now);
+
+    return (uint64_t)now.tv_sec * 1000000 + now.tv_nsec / 1000;
 }
 
 uint64_t SysTime::getCurrentTime()

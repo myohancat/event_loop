@@ -1,3 +1,7 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #ifndef __EVENT_LOOP_H_
 #define __EVENT_LOOP_H_
 

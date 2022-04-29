@@ -1,3 +1,7 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #include "mutex.h"
 
 Mutex::Mutex(bool isRecusive)

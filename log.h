@@ -1,11 +1,13 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #ifndef __LOG_H_
 #define __LOG_H_
 
 #include "types.h"
 
-#ifdef __ANDROID
-#define TAG  "MyApplication"
-#endif
+#define TAG  "PRAZEN_PROJECTOR"
 
 #include <stdio.h>
 #include <string.h>
@@ -24,17 +26,6 @@
 
 typedef enum
 {
-    LOG_OUTPUT_STDOUT,
-    LOG_OUTPUT_SERIAL,
-#ifdef __ANDROID
-    LOG_OUTPUT_ADB,
-#endif
-    
-    MAX_LOG_OUTPUT
-}LOG_OUTPUT_e;
-
-typedef enum
-{
     LOG_LEVEL_NONE,
     LOG_LEVEL_ERROR,
     LOG_LEVEL_WARN,
@@ -49,9 +40,6 @@ typedef enum
 extern "C"
 {
 #endif
-
-void         LOG_SetOutput(LOG_OUTPUT_e eOutput);
-LOG_OUTPUT_e LOG_GetOutput();
 
 void         LOG_SetLevel(LOG_LEVEL_e eLevel);
 LOG_LEVEL_e  LOG_GetLevel();
@@ -108,13 +96,15 @@ static const char* simplify_function(char* buf, const char* func)
                                          const char* func = simplify_function(tmp, __PRETTY_FUNCTION__); \
                                          LOG_Print(LOG_LEVEL_ERROR, ANSI_COLOR_RED, "[%s:%d] %s() " fmt, __BASE_FILE_NAME__, __LINE__, func, ##args); \
                                      } while(0)
+
+#ifdef __cplusplus
 class AutoFunctionTrace
 {
 public:
     AutoFunctionTrace(const char* filename, int line, const char* func)
     {
         char tmp[MAX_FUNCION_SIZE];
-        
+
         snprintf(mStackTrace, MAX_FUNCION_SIZE-1, "[%s:%d] %s", filename, line, simplify_function(tmp, func));
         mStackTrace[MAX_FUNCION_SIZE-1] =0;
 
@@ -131,5 +121,8 @@ private:
 };
 
 #define __TRACE_FUNC__   AutoFunctionTrace __function_trace__(__BASE_FILE_NAME__, __LINE__, __PRETTY_FUNCTION__)
+#else
+#define __TRACE_FUNC__   LOG_TRACE("------ [%s:%d] %s() called ------\n", __BASE_FILE_NAME__, __LINE__, __FUNCTION__)
+#endif
 
 #endif /* __INNO_LOG_H_ */

@@ -1,3 +1,7 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #include "timer.h"
 
 #include "event_loop.h"
@@ -30,7 +34,7 @@ void Timer::start(uint32_t msec, bool repeat)
     mRepeat   = repeat;
 
     if(mInterval != TIMER_INFINITE)
-        mExpiry = SysTime::getTickCount() + mInterval;
+        mExpiry = SysTime::getTickCountMs() + mInterval;
     else
         mExpiry = (uint64_t)(-1);
 

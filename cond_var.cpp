@@ -1,3 +1,7 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #include "cond_var.h"
 
 #include "sys_time.h"
@@ -29,7 +33,7 @@ bool CondVar::wait(Mutex& mutex, int timeout)
     int rc;
     struct timespec ts;
 
-    uint64_t expireTime = SysTime::getTickCount() + timeout;
+    uint64_t expireTime = SysTime::getTickCountMs() + timeout;
 
     ts.tv_sec  = expireTime / 1000;
     ts.tv_nsec = (expireTime % 1000) * 1000000L;

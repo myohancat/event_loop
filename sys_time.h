@@ -1,3 +1,7 @@
+/**
+ * @author kyungin.kim < myohancat@naver.com >
+ * my simple event loop source code
+ */
 #ifndef __SYSTEM_TIME_H_
 #define __SYSTEM_TIME_H_
 
@@ -20,7 +24,12 @@ public:
     /**
      * @return current tick count (milliseconds) after boot up
      */
-    static uint64_t getTickCount();
+    static uint64_t getTickCountMs();
+
+    /**
+     * @return current tick count (microseconds) after boot up
+     */
+    static uint64_t getTickCountUs();
 
     /**
      * @return current time (milliseconds)

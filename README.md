@@ -15,8 +15,8 @@ static void _sig_handler(int signum)
     EventLoop::getInstance().terminate();
 }
 
-int main(void) {
-
+int main(void)
+{
     signal(SIGINT, _sig_handler);
 
     // TODO. IMPLEMENTS HERE

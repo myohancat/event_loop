@@ -22,7 +22,7 @@ class Task
 {
 public:
     Task();
-    ~Task();
+    virtual ~Task();
 
     bool start();
     void stop();
